@@ -3,10 +3,8 @@ from windowsProcesses import monitor_processes, check_cur_running_games
 from PyQt6.QtWidgets import QApplication
 from PyqtGUI import ProcessMonitorApp
 from data_seeds import test_data
-from data_seeds import WinProcess
 from PyQt6.QtCore import QTimer
 import datetime
-import time
 
 ACTIVE_GAMES : str = set() #set makes this a unique list since one game can spawn many game.exe
 ACTIVE_GAME_TIME = {}
