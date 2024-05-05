@@ -5,6 +5,7 @@ from PyqtGUI import ProcessMonitorApp
 from data_seeds import test_data
 from PyQt6.QtCore import QTimer
 import datetime
+import save_to_file
 
 ACTIVE_GAMES : str = set() #set makes this a unique list since one game can spawn many game.exe
 ACTIVE_GAME_TIME = {}
@@ -29,8 +30,10 @@ def set_active_games():
         closed_games = active_game_copy - ACTIVE_GAMES
         for closed_game in closed_games:
             #if the CLOSED_GAME_TTOAL[INDEX] ALREADy exist, I need to increment this value rather than reseting it? OR when its closed that value goes to a database and that way i can record hwo many times they played and jsut add all of the times together
-            CLOSED_GAME_TOTAL_TIME[closed_game] = datetime.datetime.now()  - ACTIVE_GAME_TIME[closed_game] #THIS IS WHERE I LEFT OFF
+            CLOSED_GAME_TOTAL_TIME[closed_game] = str(datetime.datetime.now()  - ACTIVE_GAME_TIME[closed_game]) #THIS IS WHERE I LEFT OFF
+            print("Closed Game Total Time: " + str(CLOSED_GAME_TOTAL_TIME))
             print(str(CLOSED_GAME_TOTAL_TIME[closed_game]))
+            save_to_file.save_to_file(CLOSED_GAME_TOTAL_TIME, closed_game,'data.json')
 
 if __name__ == "__main__": 
     app = QApplication(sys.argv)
