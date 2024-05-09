@@ -16,7 +16,7 @@ def post_data():
     # Check if request contains JSON data
     if request.is_json:
         data = request.get_json()  # Parse JSON data
-        add_new_game(data["name"])  # Output JSON data to console (for demonstration)
+        add_new_game(data)  # Output JSON data to console (for demonstration)
 
         response = {'status': 'success', 'message': 'Data received'}
         return jsonify(response), 200  # Return JSON response with HTTP status code 200
