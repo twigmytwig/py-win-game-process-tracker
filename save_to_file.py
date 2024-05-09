@@ -32,6 +32,7 @@ def save_to_file(closed_game_data, closed_game_name,filename):
                     json.dump(game_time_data, data_file, indent=2)
                 return
         #If you got here that means the file isn't empty but it also doesn't have an entry
+        #TODO THERE IS A BUG HERE. THIS IS NOT UPDATED TO FIT THE NEW STRUCTURE OF THE JSON DATA
         previous_game_time = datetime.strptime(closed_game_data[closed_game_name],format)
         new_entry_seconds = float(get_game_time_seconds(previous_game_time))
         new_entry = { closed_game_name: { "total_game_time_seconds": new_entry_seconds}}
