@@ -7,6 +7,8 @@ def get_game_time_seconds(game_time : datetime):
 def set_session_date(seconds, key, gameDataJson):
     #I need to get the object, see if it already has the date. If so, increment the time, otherwise create an instance of today and set the time
     todays_date = date.today()
+    if str(todays_date) in gameDataJson[key]["GameSessions"]:
+         seconds += gameDataJson[key]["GameSessions"][str(todays_date)]
     gameDataJson[key]["GameSessions"][str(todays_date)] = seconds
     return gameDataJson
 
