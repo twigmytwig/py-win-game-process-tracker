@@ -20,16 +20,11 @@ def get_current_processes():
 
 def monitor_processes(gameList):
     global existing_processes
-    print("PROCESS: ----------------------------------")
-    print(existing_processes)
-    print("END:__________________________________")
     running_games = set()
     new_processes = set(p.name() for p in psutil.process_iter()) - existing_processes #this could be a list? is it better to jsut get set of all processes and see loop through to see if games are in loop?
     if new_processes:
         for game in gameList:
             if game in new_processes:
-                print("--------")
-                print(game)
                 set_active_game(game,'data.json')
                 running_games.add(game)                           
     existing_processes = set(p.name() for p in psutil.process_iter())
@@ -38,12 +33,8 @@ def monitor_processes(gameList):
 
 def check_cur_running_games(active_games):
     temp_active_games = active_games.copy()
-    print("-------")
-    print(existing_processes)
-    print("-------")
     for x in active_games:
         if x not in existing_processes:
-            print("THIS GAME JUST QUIT: " + x)
             set_active_game('','data.json')
             temp_active_games.remove(x)
     return temp_active_games
